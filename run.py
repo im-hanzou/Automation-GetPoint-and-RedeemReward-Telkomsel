@@ -24,7 +24,8 @@ dc['loggingPrefs'] = {'driver': 'OFF', 'server': 'OFF', 'browser': 'OFF'}
 
 opts.add_argument('--disable-blink-features=AutomationControlled')
 opts.add_experimental_option('excludeSwitches', ['enable-logging'])
-browser = webdriver.Chrome(options=opts, desired_capabilities=dc, executable_path=r"E:\chromedriver.exe")
+path_browser = f"{cwd}\chromedriver.exe"
+browser = webdriver.Chrome(options=opts, desired_capabilities=dc, executable_path=path_browser)
 global point
 global n
 n = 1
