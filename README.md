@@ -29,7 +29,9 @@ twitter.txt
     rahulTampan|123456
       
 kodevoc.txt
-    isi dengan format: KODE1|KODE2|KODE3
+    isi dengan format: 
+    
+    KODE1|KODE2|KODE3
   
 
 Satukan dalam 1 folder.
