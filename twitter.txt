@@ -1,0 +1,2 @@
+akun1|pw1
+akun2|pw
