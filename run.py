@@ -97,7 +97,7 @@ def login_twitter(k):
         
         if "/login" in browser.current_url:
             get_warn = wait(browser, 5).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div/div/div[2]/main/div/div/div[1]/div/span'))).text
-            print(f"[*] {get_warn}")
+            print(f"[*] [ {email} ] {get_warn}")
             print(f"[*] [ {email} ] Failed Login")
             with open('failedLoginTwitter.txt','a') as f:
                 f.write('{0}|{1}\n'.format(email,password))
