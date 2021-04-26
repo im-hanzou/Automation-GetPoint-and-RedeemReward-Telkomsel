@@ -13,3 +13,24 @@ Usage:
 4. Install Selenium
 
 5. Run the Script
+
+
+*NOTE
+
+File: 
+
+twitter.txt
+  isi dengan format: username|password
+  contoh: 
+  rahulGanteng|12345678
+  rahulTampan|123456
+      
+kodevoc.txt
+  isi dengan format: KODE1|KODE2|KODE3
+  
+
+satukan dalam 1 folder
+
+Happy scrapping!
+      
+      
