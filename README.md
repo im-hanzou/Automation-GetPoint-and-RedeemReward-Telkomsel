@@ -29,7 +29,9 @@ kodevoc.txt
   isi dengan format: KODE1|KODE2|KODE3
   
 
-satukan dalam 1 folder
+Satukan dalam 1 folder.
+
+
 
 Happy scrapping!
       
