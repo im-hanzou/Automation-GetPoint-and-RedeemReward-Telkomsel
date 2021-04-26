@@ -4,15 +4,15 @@ The tool that can get your point and redeem reward telkomsel with automation.
 
 Usage:
 
-1. Download ChromeDriver
+    1. Download ChromeDriver
 
-2. Install Python
+    2. Install Python
 
-3. Install Pip
+    3. Install Pip
 
-4. Install Selenium
+    4. Install Selenium
 
-5. Run the Script
+    5. Run the Script
 
 
 *NOTE
