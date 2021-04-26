@@ -1,6 +1,6 @@
-# What is Automation Get Point and Redeem Reward Telkomsel?
+# What is Automation Get Point and Redeem Reward Telkomsel (Login Twitter)? 
 
-The tool that can get your point and redeem reward telkomsel with automation.
+The tool that can get your point and redeem reward telkomsel with automation by login Twitter.
 
 Usage:
 
