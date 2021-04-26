@@ -139,7 +139,7 @@ def login_twitter(k):
                 file_list_url = "kodevoc.txt"
                 myfile_url = open(f"{cwd}/{file_list_url}","r")
                 list_account_url = myfile_url.read()
-                new_url = list_account_url.split() 
+                new_url = list_account_url.split("|") 
                 # link_url = input("[*] Kode Voucher \n[*] Bila lebih dari 1 voucher, pisahkan dengan | tanpa spasi, contoh: KODE1|KODE2|KODE3 : ")
                 # new_url = link_url.split("|")
                 
