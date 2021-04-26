@@ -21,8 +21,11 @@ File:
 
 twitter.txt
   isi dengan format: username|password
+  
   contoh: 
+  
   rahulGanteng|12345678
+  
   rahulTampan|123456
       
 kodevoc.txt
