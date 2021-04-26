@@ -39,7 +39,7 @@ def get_voc(email, password,point,browser):
     
     # clear = re.search("voucher (\w+)", get_voc)
     # voc = clear.group(1)
-    print(f"[*]  [ {email} ] Message: {get_voc}")
+    print(f"[*] [ {email} ] Message: {get_voc}")
     with open('getVoucher.txt','a') as f:
         f.write('{0} | {1} | Point:{2} | Message : {3}\n'.format(email,password,point[0],get_voc))
      
@@ -48,7 +48,7 @@ def get_message(email, password, browser):
     sleep(3)
     # browser.save_screenshot("GET_MESSAGE.png")
     get_time =  wait(browser,20).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[2]/div[2]/div[3]/div[2]/div[1]/div/div[1]/div[2]/div[2]/span'))).text
-    print(f"[*]  [ {email} ] Waktu pada pesan: {get_time}")
+    print(f"[*] [ {email} ] Waktu pada pesan: {get_time}")
     # clear_time = re.findall(r'\b\d+\b', get_time)
     # print(clear_time)
     try:
