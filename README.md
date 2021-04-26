@@ -31,6 +31,8 @@ twitter.txt
 kodevoc.txt
     isi dengan format: 
     
+    contoh:
+    
     KODE1|KODE2|KODE3
   
 
