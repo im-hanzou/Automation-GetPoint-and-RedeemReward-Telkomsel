@@ -20,16 +20,16 @@ Usage:
 File: 
 
 twitter.txt
-  isi dengan format: username|password
+    isi dengan format: username|password
   
-  contoh: 
+    contoh: 
   
-  rahulGanteng|12345678
+    rahulGanteng|12345678
   
-  rahulTampan|123456
+    rahulTampan|123456
       
 kodevoc.txt
-  isi dengan format: KODE1|KODE2|KODE3
+    isi dengan format: KODE1|KODE2|KODE3
   
 
 Satukan dalam 1 folder.
