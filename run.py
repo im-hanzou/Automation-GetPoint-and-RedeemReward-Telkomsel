@@ -82,9 +82,9 @@ def login_twitter(k):
      
     try:
         browser.get("https://twitter.com/login")
-        print(f"[*]  [ {email} ] Please wait, trying to login twitter!")
+        print(f"[*] [ {email} ] Please wait, trying to login twitter!")
         sleep(3)
-        
+        browser.save_screenshot("LOGIN_TWITTER.png")
         element = wait(browser,35).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div/div/div[2]/main/div/div/div[2]/form/div/div[1]/label/div/div[2]/div/input')))
         element.send_keys(email)
         sleep(0.5)
@@ -94,13 +94,16 @@ def login_twitter(k):
         wait(browser,10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/div/div[2]/main/div/div/div[2]/form/div/div[3]/div/div/span/span'))).click()
         
         sleep(3)
-        # browser.save_screenshot("LOGIN_TWITTER.png")
+        
         try:
             get_warn = wait(browser, 5).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div/div/div[2]/main/div/div/div[1]/div/span'))).text
             print(f"[*] {get_warn}")
-            print(f"[*] Failed Login:  [ {email} ]")
+            print(f"[*] [ {email} ] Failed Login")
             with open('failedLoginTwitter.txt','a') as f:
                 f.write('{0}|{1}\n'.format(email,password))
+	    
+	    		browser.quit()
+
         except:
             pass
 
@@ -127,13 +130,13 @@ def login_twitter(k):
 
         sleep(10)
         try: 
-            get_point = wait(browser,1000).until(EC.presence_of_element_located((By.CSS_SELECTOR,'.Dashboard-container__dashboardContainer___9ljIU > .DashboardMainContent-component__dashboardMainContentComponent___20Ibz > .DashboardMainContent-component__mainContent___1f1O_ > .DashboardMainContent-component__userDetail___1Kqx3 > .DashboardLoyaltyPoin-component__dashboardloyaltypoinComponent___VwkjH'))).text
+            get_point = wait(browser,60).until(EC.presence_of_element_located((By.CSS_SELECTOR,'.Dashboard-container__dashboardContainer___9ljIU > .DashboardMainContent-component__dashboardMainContentComponent___20Ibz > .DashboardMainContent-component__mainContent___1f1O_ > .DashboardMainContent-component__userDetail___1Kqx3 > .DashboardLoyaltyPoin-component__dashboardloyaltypoinComponent___VwkjH'))).text
             point = re.findall(r'\b\d+\b', get_point)
-            print(f"[*] Success Login:  [ {email} ]")
+            print(f"[*] [ {email} ] Success Login")
             with open('successLoginTwitter.txt','a') as f:
                 f.write('{0}|{1}|{2}\n'.format(email,password,point[0]))
         
-            print(f"[*]  [ {email} ] Your Point: {point[0]}")
+            print(f"[*] [ {email} ] Your Point: {point[0]}")
             # browser.save_screenshot("POINT.png")
             sleep(0.5)
             file_list_url = "kodevoc.txt"
@@ -142,69 +145,73 @@ def login_twitter(k):
             new_url = list_account_url.split("|") 
             # link_url = input("[*] Kode Voucher \n[*] Bila lebih dari 1 voucher, pisahkan dengan | tanpa spasi, contoh: KODE1|KODE2|KODE3 : ")
             # new_url = link_url.split("|")
-            print(new_url)
-            try:
-                for url in new_url:
-                    try: 
-                        browser.get(f"https://my.telkomsel.com/app/loyalty-reward-details/{url}")
-                        print(f"[*]  [ {email} ] Go To Voucher: {browser.current_url}")
-                    
+             
+            # try:
+            for url in new_url:
+                
+                browser.get(f"https://my.telkomsel.com/app/loyalty-reward-details/{url}")
+                print(f"[*] [ {email} ] Go To Voucher: {browser.current_url}")
+            
+                sleep(5)
+                #klik tukar
+                browser.save_screenshot(f"VOUC+{url}.png")
+                element = wait(browser,20).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[2]/div[2]/div[4]/div/div[2]/div/button')))
+                browser.execute_script("arguments[0].scrollIntoView();", element)
+                # browser.save_screenshot("SCROLL.png")
+                sleep(3)
+                wait(browser,15).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[2]/div[2]/div[4]/div/div[2]/div/button'))).click()
+                sleep(3)
+            
+                title_first = wait(browser,20).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[1]/div/div[1]/div/div[1]/div/span'))).text
+                
+                # print(title_first)
+                browser.save_screenshot(f"VOUC+1+{url}.png")
+                sleep(3)
+            
+                try:
+                    if "Setuju" in title_first:
+                        #click confirm
+                        wait(browser,10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/button[2]/span'))).click()
+                        sleep(3)
+                        browser.save_screenshot("SETUJU.png")
+                        browser.get("https://my.telkomsel.com/app/inbox")
+                        sleep(3)
+                        #click messange
+                        print(f"[*] [ {email} ] Trying to check new inbox")
+                        get_message(email, password, browser)
                         sleep(5)
-                        #klik tukar
-                        browser.save_screenshot(f"VOUC+{url}.png")
-                        element = wait(browser,20).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[2]/div[2]/div[4]/div/div[2]/div/button')))
-                        browser.execute_script("arguments[0].scrollIntoView();", element)
-                        # browser.save_screenshot("SCROLL.png")
-                        sleep(3)
-                        wait(browser,15).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[2]/div[2]/div[4]/div/div[2]/div/button'))).click()
-                        sleep(3)
-                    
-                        title_first = wait(browser,20).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[1]/div/div[1]/div/div[1]/div/span'))).text
+                        get_voc(email,password,point,browser)
+                    elif "Info" in title_first: 
+                        print(f"[*] [ {email} ] Point Tidak Cukup atau Voucher tidak dapat diredeem")
                         
-                        # print(title_first)
-                        browser.save_screenshot(f"VOUC+1+{url}.png")
-                        sleep(3)
+                except:
+                    print(f"[*] [ {email} ] Finish")
+                    browser.quit()
                     
-                        try:
-                            if "Setuju" in title_first:
-                                #click confirm
-                                wait(browser,10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/button[2]/span'))).click()
-                                sleep(3)
-                                browser.save_screenshot("SETUJU.png")
-                                browser.get("https://my.telkomsel.com/app/inbox")
-                                sleep(3)
-                                #click messange
-                                print(f"[*]  [ {email} ] Trying to check new inbox")
-                                get_message(email, password, browser)
-                                sleep(5)
-                                get_voc(email,password,point,browser)
-                            elif "Info" in title_first: 
-                                print(f"[*]  [ {email} ] Point Tidak Cukup atau Voucher tidak dapat diredeem")
-                                browser.quit()
-                        except:
-                            print(f"[*]  [ {email} ] Finish")
-                            browser.quit()
-                    except:
-                        print(f"[*]  [ {email} ] Finish, The Job is Done!")
-                        browser.quit()
-            except:
-                browser.save_screenshot("ERROR_WARN_THIRD.png")
-                print(f"[*]  [ {email} ] Something Error at Third Step")
-                browser.quit()
-                pass
+            print(f"[*] [ {email} ] Finish***")
+            browser.quit()
+                
+
+            # except:
+            #     # browser.save_screenshot("ERROR_WARN_THIRD.png")
+            #     print(f"[*] [ {email} ] Finish, The Job is Done!***")
+            #     browser.quit()
+            #     pass
         except:
             browser.save_screenshot("ERROR_WARN_SECOND.png")
-            print(f"[*]  [ {email} ] Something Error at Second Step")
+            print(f"[*] [ {email} ] Something Error at Second Step")
             browser.quit()
-            pass
+            
     except:
         browser.save_screenshot("ERROR_WARN_FIRST.png")
-        print(f"[*]  [ {email} ] Something Error at First Step")
+        print(f"[*] [ {email} ] Something Error at First Step")
+        browser.quit()
+        
 
 if __name__ == '__main__':
     global list_accountsplit
     global k
-    print("[*] Automation Confirm Aliexpress")
+    print("[*] Automation Get Point and Reedeem Reward Telkomsel")
     print("[*] Format: email|password")
     jumlah = int(input("[*] Jumlah Proses Data (Spek PC Tinggi, isi bebas (rekomen 3), namun perhatikan jumlah akun twitternya. Spek PC rendah, isi 1 saja) : "))
     file_list = "twitter.txt"
@@ -214,3 +221,4 @@ if __name__ == '__main__':
     list_accountsplit = list_account.split() 
     with Pool(jumlah) as p:  
         p.map(login_twitter, list_accountsplit)
+        
