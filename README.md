@@ -29,6 +29,9 @@ twitter.txt
     rahulTampan|123456
       
 kodevoc.txt
+
+Kode voc adalah kode yang berada di link URL voucher paling akhir. 
+
     isi dengan format: 
     
     contoh:
