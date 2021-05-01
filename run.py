@@ -44,7 +44,7 @@ def get_voc(email, password,point,browser,get_pulsa,get_telpon):
     print(f"[*]  [ {email} ] Message: {get_voc}")
     with open('getVoucher.txt','a') as f:
         f.write('{0} | {1} | Point:{2} | Message : {3}\n'.format(email,password,point[0],get_voc))
-    browser.quit()
+    
 
 def get_message(email, password,point,browser,get_pulsa,get_telpon):
     sleep(3)
